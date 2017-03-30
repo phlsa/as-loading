@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    #container {
+      position: relative;
+      width: 100%;
+      height: 2000px;
+    }
+    #container div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 100% auto;
+    }
+    #s00 {
+      background-image: url("as-exp-_0000_Base.png");
+      z-index: 1;
+    }
+    #s01 {
+      background-image: url("as-exp-_0001_Hover.png");
+      z-index: 2;
+    }
+    #s02 {
+      background-image: url("as-exp-_0002_Tab.png");
+      z-index: 3;
+    }
+    #s03 {
+      background-image: url("as-exp-_0003_Bar.png");
+      z-index: 4;
+    }
+    #s04 {
+      background-image: url("as-exp-_0004_TopSites.png");
+      z-index: 5;
+    }
+    #s05 {
+      background-image: url("as-exp-_0005_Highlights.png");
+      z-index: 6;
+    }
+    #newtab {
+      position: absolute;
+      left: 18%;
+      top: 0%;
+      width: 3%;
+      height: 7%;
+      z-index: 100;
+    }
+    .hidden { display:none }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="s00" class=""></div>
+      <div id="s01" class="hidden"></div>
+      <div id="s02" class="hidden"></div>
+      <div id="s03" class="hidden"></div>
+      <div id="s04" class="hidden"></div>
+      <div id="s05" class="hidden"></div>
+    </div>
+    <div id="newtab"></div>
+    <script>
+      var timings = {
+        timeToSearchBar: 500,
+        timeToTopSites: 800,
+        timeToHighlights: 2000
+      }
+
+      var newtab = document.getElementById('newtab')
+      newtab.addEventListener('mousemove', () => {
+        document.getElementById('s01').classList.remove('hidden')
+      })
+      newtab.addEventListener('mouseout', () => {
+        document.getElementById('s01').classList.add('hidden')
+      })
+      newtab.addEventListener('mousedown', () => {
+        document.getElementById('s02').classList.remove('hidden')
+        setTimeout(() => { document.getElementById('s03').classList.remove('hidden') }, timings.timeToSearchBar)
+        setTimeout(() => { document.getElementById('s04').classList.remove('hidden') }, timings.timeToTopSites)
+        setTimeout(() => { document.getElementById('s05').classList.remove('hidden') }, timings.timeToHighlights)
+      })
+    </script>
+  </body>
+</html>
